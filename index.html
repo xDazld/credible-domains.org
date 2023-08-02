@@ -41,19 +41,19 @@
 
 		if (!themeSwitchers.length) return;
 
+		document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
+			element.classList.remove('active');
+			element.setAttribute('aria-pressed', 'false');
+		});
+
 		for (const themeSwitcher of themeSwitchers) {
 
-			const themeSwitcherText = document.querySelector('#theme-text');
-			const activeThemeIcon = document.querySelector('.theme-icon-active use');
-			const btnToActive = document.querySelector('[data-bs-theme-value="' + theme + '"]');
+			const btnToActivate = themeSwitcher.querySelector('[data-bs-theme-value="' + theme + '"]');
 
-			document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
-				element.classList.remove('active');
-				element.setAttribute('aria-pressed', 'false');
-			});
-
-			btnToActive.classList.add('active');
-			btnToActive.setAttribute('aria-pressed', 'true');
+			if (btnToActivate) {
+				btnToActivate.classList.add('active');
+				btnToActivate.setAttribute('aria-pressed', 'true');
+			}
 		}
 	}
 
